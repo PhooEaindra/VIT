@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modern Business - Start Bootstrap Template</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Font Custom and Font Awesome -->
+  <link rel="stylesheet" href="css/fontawesome-all.min.css">
+</head>
+<body>
+   <?php
+        include("dbconnect.php");
+     
+        if(isset($_POST['submit'])) {
+            $user = $_POST['username'];
+            $pass = $_POST['password'];
+            $phone = $_POST['phone'];
+            $township = $_POST['township'];
+            $image=$_POST['img'];
+            
+     
+            if($user == "" || $pass == "" || $phone == "" ) {
+                echo "All fields should be filled. Either one or many fields are empty.";
+                echo "<br/>";
+                echo "<a href='register.php'>Go back</a>";
+            } else {
+                mysqli_query($connect, "INSERT INTO delivery(username, password, phoneNumber, deliTownship,userImage) VALUES('$user', md5('$pass'), '$phone','$township' ,'$image')")
+                or die("Could not execute the insert query.");
+                
+                echo "Registration successfully";
+                echo "<br/>";
+                echo "<a href='login.php'>Login</a>";
+            }
+        } else {
+    ?>
+
+  <!-- navbar -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h1>Registration</h1>
+        <form action="" class="form-group sendMessageForm">
+          <label for="fullName" class="control-label">
+            Full Name :
+          </label>
+          <input type="text" placeholder="Full Name" id="fullName" class="form-control">
+
+          <label for="Password" class="control-label">
+            Password :
+          </label>
+          <input type="tel" placeholder="Password" id="pass" class="form-control">
+          <label for="phNum" class="control-label">
+            Phone Number:
+          </label>
+          <input type="text" placeholder="Phone Number" id="phNum" class="form-control">
+          <label for="sel1">Destination Township (select one):</label>
+              <select class="form-control" id="sel1">
+                  <option value="Hlaing Thar Yar">Hlaing Thar Yar</option>
+                  <option value="Hlaing" selected>Hlaing</option>
+                  <option value="South Okkalapa">South Okkalapa</option>
+                  <option value="North Okkalapa">North Okkalapa</option>
+                  <option value="Insein">Insein</option>
+                  <option value="Mayangone">Mayangone</option>
+                  <option value="Kamayut">Kamayut</option>
+              </select>
+          <label for="sel1" class="control-label">Upload your image:</label>
+          <input type="file" name="img" placeholder="Upload your image">
+          <input type="button" value="Send" class="btn btn-primary">
+        </form>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+        <?php
+        }
+        ?>
+</body>
+</html>

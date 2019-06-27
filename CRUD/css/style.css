@@ -1,0 +1,29 @@
+.slide-show img{
+	width:cover;
+	max-height:400px;
+	min-height: 150px;
+}
+.portfolio img{
+	margin-bottom: 20px;
+}
+.business img{
+	max-height: 300px;
+	min-height: 150px;
+}
+.footer p{
+	padding:50px 0;
+}
+.thumbnail:not(){
+
+}
+.our-customer img{
+	margin-bottom: 20px;
+}
+.sendMessageForm input,.sendMessageForm label{
+	margin:10px 0;
+}
+.service img{
+	width:100%;
+	max-height: 300px;
+	min-height: 150px;
+}
